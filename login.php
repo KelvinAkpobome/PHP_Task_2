@@ -1,49 +1,30 @@
-<?php include_once('lib/header.php');
-
-if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
-    
-
+<?php include_once("lib/header.php")?>
+<?php if (isset($_SESSION["Loggedin"]) && !empty($_SESSION["Loggedin"])){
     header("Location: dashboard.php");
 }
 
-
-
 ?>
-<div class="login">
-    <p>
-        <?php 
-            if(isset($_SESSION['message']) && !empty($_SESSION['message'])){
-                echo "<p class='info'>" . $_SESSION['message'] . "</p>";
-                session_destroy();
+<p>
+<?php
+    if(isset($_SESSION['message']) &&  !empty ($_SESSION['message'])){
+        echo "<span style='color:green'>" . $_SESSION['message'] . "</span>";
+        session_destroy();
             }
         ?>
-    </p>
-    <form method="POST" action="processlogin.php">
-	 <fieldset>
-	  <legend><h1>Log In</h1></legend>
-      <p>
-        <?php 
-            if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
-                echo "<p class='error'>" . $_SESSION['error'] . "</p>";
 
+    </p>
+    <div>
+	<form method="POST" action="processlogin.php">
+	  		<h3>Login</h3>
+         <p>
+        <?php
+            if(isset($_SESSION['error']) &&  !empty ($_SESSION['error'])){
+                echo "<span style='color:red'>" . $_SESSION['error'] . "</span>";
                 session_destroy();
             }
-			
-            if(isset($_SESSION['emailerr']) && !empty($_SESSION['emailerr'])){
-                echo "<p class='error'>" . $_SESSION['emailerr'] . "</p>";
-                session_unset();
-            }
-            if(isset($_SESSION['emailerrfmt']) && !empty($_SESSION['emailerrfmt'])){
-                echo "<p class='error'>" . $_SESSION['emailerrfmt'] . "</p>";
-                session_unset();
-            }
-            if(isset($_SESSION['passworderr']) && !empty($_SESSION['passworderr'])){
-                echo "<p class='error'>" . $_SESSION['passworderr'] . "</p>";
-                session_unset();
-            }
         ?>
-    </p>
-               
+
+         </p>          
         <p>
             <label>Email</label><br />
             <input
@@ -60,13 +41,9 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
         <p>
             <label>Password</label><br />
             <input type="password" name="password" placeholder="Password"  />
-        </p>       
-       
-       
+        </p>
         <p>
             <button type="submit">Login</button>
         </p>
-	  </fieldset>
     </form>
-
-<?php include_once('lib/footer.php'); ?>
+<?php include_once("lib/footer.php")?>
