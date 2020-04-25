@@ -1,7 +1,7 @@
 <?php include_once('../lib/header.php'); ?>
 <?php 
 	// checking if a user is logged in
-	if (!isset($_SESSION['first_name'])) {
+	if (!isset($_SESSION['full_name'])) {
 		header('Location: index.php');
 	}
 
