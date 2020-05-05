@@ -1,19 +1,13 @@
 <?php include_once("lib/header.php")?>
 
-<?php if (isset($_SESSION["Loggedin"]) && !empty($_SESSION["Loggedin"])){
-    header("Location: dashboard.php");
-}
-?>
 
-<div>
-	<form method="POST" action="processregister.php">
-	  		<h1>Register</h1>
-                   <p>All <strong>fields</strong> are required</p>
+	<form name= "appointment" action="processappointment.php" method="POST">
+	  		<h2>Appointment Form</h2>
+                   <p>A<strong> few</strong> fields are required</p>
          <p>
         <?php
             if(isset($_SESSION['error']) &&  !empty ($_SESSION['error'])){
                 echo "<span style='color:red'>" . $_SESSION['error'] . "</span>";
-                session_destroy();
             }
         ?>
 
@@ -53,8 +47,37 @@
         </p>
 
         <p>
-            <label>Password</label><br />
-            <input type="password" name="password" placeholder="Password"  />
+            <label>Appointment Date</label><br />
+            <input  
+            <?php              
+                if(isset($_SESSION['appointmentdate'])){
+                    echo "value=" . $_SESSION['appointmentdate'];                                                             
+                }                
+            ?>
+            type="date" name="appointmentdate" placeholder="Appointment Date" />
+        </p>
+
+        <p>
+            <label>Appointment Time</label><br />
+            <input  
+            <?php              
+                if(isset($_SESSION['appointmenttime'])){
+                    echo "value=" . $_SESSION['appointmenttime'];                                                             
+                }                
+            ?>
+            type="time" name="appointmenttime" placeholder="Appointment Time" />
+        </p>
+
+
+        <p>
+            <label>Age</label><br />
+            <input
+            <?php              
+                if(isset($_SESSION['age'])){
+                    echo "value=" . $_SESSION['age'];                                                             
+                }                
+            ?>
+             type="number" name="age" placeholder="Age"  />
         </p>
         <p>
             <label>Gender</label><br />
@@ -76,53 +99,17 @@
                 >Male</option>
             </select>
         </p>
-       
-        <p>
-            <label>Designation</label><br />
-            <select name="designation" >
-            
-                <option value="">Select One</option>
-                <option 
-                <?php              
-                    if(isset($_SESSION['designation']) && $_SESSION['designation'] == 'Admin Member'){
-                        echo "selected";                                                           
-                    }                
-                ?>
-                >Admin Member</option>
-                <option 
-                <?php              
-                    if(isset($_SESSION['designation']) && $_SESSION['designation'] == 'Medical Team (MT)'){
-                        echo "selected";                                                           
-                    }                
-                ?>
-                >Medical Team (MT)</option>
-                <option 
-                <?php              
-                    if(isset($_SESSION['designation']) && $_SESSION['designation'] == 'Patient'){
-                        echo "selected";                                                           
-                    }                
-                ?>
-                >Patient</option>
-            </select>
-        </p>
         <p>
             <label>Department</label><br />
-            <select name="department" >
-            
-            <option value=""><strong>Select One</strong></option>
-                <option 
-                <?php              
-                    if(isset($_SESSION['department']) && $_SESSION['department'] == 'Obstetrics'){
-                        echo "selected";                                                           
-                    }                
-                ?>
-                >Obstetrics</option>
-                <option 
-                <?php              
-                    if(isset($_SESSION['department']) && $_SESSION['department'] == 'Maternity'){
-                        echo "selected";                                                           
-                    }                
-                ?>
+                <select name="department" >
+                    <option value=""><strong>Select One</strong></option>
+                        <option <?php if(isset($_SESSION['department']) && $_SESSION['department'] == 'Obstetrics'){echo "selected";} ?>>Obstetric</option>
+                        <option 
+                            <?php              
+                                if(isset($_SESSION['department']) && $_SESSION['department'] == 'Maternity'){
+                                echo "selected";                                                           
+                                }                
+                            ?>
                 >Maternity</option>
                 <option 
                 <?php              
@@ -140,8 +127,10 @@
                 >Gynecology</option>
             </select>
         </p>
+        <p>Brief Statement<br> <em>Optional</em><br> <textarea name="initcomment" placeholder="50 words or less"> </textarea> </p> 
         <p>
-            <button type="submit">Register</button>
+            <button type="submit">Submit</button>
         </p>
     </form>
+
 <?php include_once("lib/footer.php")?>

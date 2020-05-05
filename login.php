@@ -1,15 +1,11 @@
 <?php include_once("lib/header.php")?>
-<?php if (isset($_SESSION["Loggedin"]) && !empty($_SESSION["Loggedin"])){
-    header("Location: dashboard.php");
-}
 
-?>
 <p>
 <?php
     if(isset($_SESSION['message']) &&  !empty ($_SESSION['message'])){
         echo "<span style='color:green'>" . $_SESSION['message'] . "</span>";
-        session_destroy();
-            }
+            //session_destroy();       
+    }
         ?>
 
     </p>
@@ -20,7 +16,6 @@
         <?php
             if(isset($_SESSION['error']) &&  !empty ($_SESSION['error'])){
                 echo "<span style='color:red'>" . $_SESSION['error'] . "</span>";
-                session_destroy();
             }
         ?>
 

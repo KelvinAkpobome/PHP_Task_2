@@ -58,7 +58,7 @@ else{
                 }
     }
         file_put_contents("db/users/". $email. ".json", json_encode($userObject));
-        $_SESSION['message'] = " You have  successfully registered, you can now log in" .$first_name;
+        $_SESSION['message'] = " You have been successfully registered, you can now log in " .$first_name;
         header("Location: login.php");  
 
 }
