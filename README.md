@@ -1,7 +1,7 @@
 # Authentication_System
 Authentication System built with PHP
 
-Deployment Instructions 💻🚀
+Deployment Instructions
 
 
 # Uusing either xampp or wamp
